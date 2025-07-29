@@ -5,7 +5,7 @@
 
 Alumnos:
 * Pulido, Luciano Nicolás - 53397
-* Sarmiento, Joaquín Esteban - 
+* Sarmiento, Joaquín Esteban - 50152
 
 ## Introducción
 
@@ -18,3 +18,8 @@ En este trabajo haremos un análisis de rendimiento de los modelos de itemsets f
 Nuestro objetivo es, aparte de ver sus resultados, analizar cómo es el rendimiento de cada uno de ellos y las máquinas en donde los estamos ejecutando. Se tendrá en cuenta factores como el tiempo de ejecución, el uso de memoria, sensibilidad a min support, el uso de CPUs, etc.
 
 Para el análisis haremos uso del dataset "online_retail_2.xlsx" presente en este repositorio, usando diferentes tamaños de muestras para evaluar la escalabilidad de cada algoritmo.
+
+La explicación de la limpieza inicial de los datos y de la creación del dataset para los algoritmos se puede ver en el notebook llamado `preprocessing.ipynb`.
+
+Cada algoritmo tiene su propio archivo .py en el cual se hace el análisis de rendimiento del mismo. Los resultados de performance se listan a continuación.
+
