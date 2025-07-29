@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "frequent-itemsets-benchmark"
+version = "0.1.0"
+description = ""
+authors = ["Luciano Pulido <lucianonicolaspulido@gmail.com>"]
+readme = "README.md"
+packages = [{include = "frequent_itemsets_benchmark"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pandas = "^2.3.1"
+seaborn = "^0.13.2"
+mlxtend = "^0.23.4"
+notebook = "^7.4.4"
+openpyxl = "^3.1.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
