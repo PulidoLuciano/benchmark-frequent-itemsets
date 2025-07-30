@@ -38,7 +38,7 @@ def main():
 
     Path("results").mkdir(exist_ok=True)
     with open("results/benchmark.csv", "a") as f:
-        f.write(f"{stats['Total_RAM_GB']},{stats['Hostname']},{stats['OS']},{stats['CPU']},{stats['Logical_CPUs']},{stats['Physical_CPUs']},{args.algorithm},{args.min_support},{args.max_transactions},{args.max_items},{stats['Duration_s']},{stats['User_Time_s']},{stats['Sys_Time_s']},{stats['RSS_Memory_KB']},{stats['Peak_Memory_MB']},{stats['Peak_Tracked_Bytes']}\n")
+        f.write(f"{stats['Total_RAM_GB']},{stats['Hostname']},{stats['OS']},{stats['CPU']},{stats['Logical_CPUs']},{stats['Physical_CPUs']},{args.algorithm},{args.min_support},{args.max_transactions},{args.max_items},{len(output)},{stats['Duration_s']},{stats['User_Time_s']},{stats['Sys_Time_s']},{stats['RSS_Memory_KB']},{stats['Peak_Memory_MB']},{stats['Peak_Tracked_Bytes']}\n")
     
     output.to_csv(f"results/{args.algorithm}_{args.min_support}_{args.max_transactions}_{args.max_items}.csv", index=False)
 
