@@ -9,7 +9,7 @@ df.set_index('InvoiceNo', inplace=True)
 
 # Función objetivo
 def run_apriori():
-    return fpgrowth(df, min_support=0.02, use_colnames=True)
+    return fpgrowth(df, min_support=0.01, use_colnames=True)
 
 print('Ejecutando benchmark...')
 data, output = run_benchmark(run_apriori, label="Apriori v1")
