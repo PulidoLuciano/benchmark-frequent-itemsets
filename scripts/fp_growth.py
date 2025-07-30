@@ -1,88 +1,11 @@
 from mlxtend.frequent_patterns import fpgrowth
-from benchmark import run_benchmark
+from scripts.benchmark import run_benchmark
 import pandas as pd
-import os
 
-print('Cargando dataset...')
-df = pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/boolean_basket.csv"))
-df.set_index('InvoiceNo', inplace=True)
+def run_fp_growth(transactions_df, min_support):
+    return fpgrowth(transactions_df, min_support=min_support, use_colnames=True)
 
-# Función objetivo
-def run_apriori():
-    return fpgrowth(df, min_support=0.01, use_colnames=True)
-
-print('Ejecutando benchmark...')
-data, output = run_benchmark(run_apriori, label="Apriori v1")
-
-# Mostrar resultados
-df_benchmark = pd.DataFrame([data])
-print(df_benchmark.T)
-
-
-# # Visualización de resultados
-# plt.figure(figsize=(15, 10))
-
-# # 1. Distribución del soporte
-# plt.subplot(2, 3, 1)
-# plt.hist(rules['support'], bins=30, alpha=0.7, color='skyblue', edgecolor='black')
-# plt.title('Distribución del Soporte')
-# plt.xlabel('Soporte')
-# plt.ylabel('Frecuencia')
-# plt.grid(True, alpha=0.3)
-
-# # 2. Distribución del leverage
-# plt.subplot(2, 3, 2)
-# plt.hist(rules['leverage'], bins=30, alpha=0.7, color='salmon', edgecolor='black')
-# plt.title('Distribución del Leverage')
-# plt.xlabel('Leverage')
-# plt.ylabel('Frecuencia')
-# plt.grid(True, alpha=0.3)
-
-# # 3. Distribución de la confianza
-# plt.subplot(2, 3, 3)
-# plt.hist(rules['confidence'], bins=30, alpha=0.7, color='lightgreen', edgecolor='black')
-# plt.title('Distribución de la Confianza')
-# plt.xlabel('Confianza')
-# plt.ylabel('Frecuencia')
-# plt.grid(True, alpha=0.3)
-
-# # 4. Distribución del lift
-# plt.subplot(2, 3, 4)
-# plt.hist(rules['lift'], bins=30, alpha=0.7, color='gold', edgecolor='black')
-# plt.title('Distribución del Lift')
-# plt.xlabel('Lift')
-# plt.ylabel('Frecuencia')
-# plt.grid(True, alpha=0.3)
-
-# # 5. Scatter plot: Confianza vs Soporte
-# plt.subplot(2, 3, 5)
-# plt.scatter(rules['support'], rules['confidence'], alpha=0.6, c=rules['lift'], cmap='viridis')
-# plt.colorbar(label='Lift')
-# plt.title('Confianza vs Soporte (coloreado por Lift)')
-# plt.xlabel('Soporte')
-# plt.ylabel('Confianza')
-# plt.grid(True, alpha=0.3)
-
-# # 6. Top 10 reglas por lift
-# plt.subplot(2, 3, 6)
-# top_rules = rules.nlargest(10, 'lift')
-# plt.barh(range(len(top_rules)), top_rules['lift'], color='mediumpurple')
-# plt.yticks(range(len(top_rules)), [f"{str(rule)[:25]}..." if len(str(rule)) > 25 else str(rule) 
-#                                   for rule in top_rules.index])
-# plt.title('Top 10 Reglas por Lift')
-# plt.xlabel('Lift')
-# plt.gca().invert_yaxis()
-
-# plt.tight_layout()
-# plt.savefig('analisis_reglas_asociacion.png', dpi=300, bbox_inches='tight')
-# plt.show()
-
-# # Imprimir resumen estadístico
-# print("\nResumen Estadístico de las Reglas de Asociación:")
-# print("\nNúmero total de reglas:", len(rules))
-# print("\nEstadísticas de las métricas principales:")
-# print(rules[['support', 'confidence', 'lift']].describe())
-
-# # Guardar resultados
-# rules.to_csv('reglas_asociacion.csv', index=False)
-# frequent_itemsets.to_csv('conjuntos_frecuentes.csv', index=False)
+def run(transactions_df, min_support):
+    print('Ejecutando benchmark...')
+    data, output = run_benchmark(func=run_fp_growth, func_args=[transactions_df, min_support], label="FP-Growth")
+    return data, output

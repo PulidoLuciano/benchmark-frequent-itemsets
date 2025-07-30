@@ -36,7 +36,6 @@ def run_benchmark(func, func_args=None, func_kwargs=None, label=""):
     # Iniciar temporizador y CPU stats
     start_time = time.perf_counter()
     start_cpu_times = process.cpu_times()
-    start_threads = process.num_threads()
 
     # Monitoreo de memoria en paralelo
     mem_usage = memory_usage((func, func_args, func_kwargs), interval=0.1, timeout=None, retval=True)
@@ -46,7 +45,6 @@ def run_benchmark(func, func_args=None, func_kwargs=None, label=""):
     # Finalización
     end_time = time.perf_counter()
     end_cpu_times = process.cpu_times()
-    end_threads = process.num_threads()
     current, peak_tracemalloc = tracemalloc.get_traced_memory()
     tracemalloc.stop()
 
@@ -64,8 +62,6 @@ def run_benchmark(func, func_args=None, func_kwargs=None, label=""):
         "RSS_Memory_KB": rss_memory_kb,
         "Peak_Memory_MB": round(peak_memory_mb, 2),
         "Peak_Tracked_Bytes": peak_tracemalloc,
-        "Threads_Start": start_threads,
-        "Threads_End": end_threads,
         **system_info,
     }
 
