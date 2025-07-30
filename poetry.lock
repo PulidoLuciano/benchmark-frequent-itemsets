@@ -414,7 +414,7 @@ description = "Cross-platform colored terminal text."
 optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7"
 groups = ["main"]
-markers = "sys_platform == \"win32\""
+markers = "sys_platform == \"win32\" or platform_system == \"Windows\""
 files = [
     {file = "colorama-0.4.6-py2.py3-none-any.whl", hash = "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"},
     {file = "colorama-0.4.6.tar.gz", hash = "sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44"},
@@ -1484,6 +1484,21 @@ files = [
 traitlets = "*"
 
 [[package]]
+name = "memory-profiler"
+version = "0.61.0"
+description = "A module for monitoring memory usage of a python program"
+optional = false
+python-versions = ">=3.5"
+groups = ["main"]
+files = [
+    {file = "memory_profiler-0.61.0-py3-none-any.whl", hash = "sha256:400348e61031e3942ad4d4109d18753b2fb08c2f6fb8290671c5513a34182d84"},
+    {file = "memory_profiler-0.61.0.tar.gz", hash = "sha256:4e5b73d7864a1d1292fb76a03e82a3e78ef934d06828a698d9dada76da2067b0"},
+]
+
+[package.dependencies]
+psutil = "*"
+
+[[package]]
 name = "mistune"
 version = "3.1.3"
 description = "A sane and fast Markdown parser with useful plugins and renderers"
@@ -2143,6 +2158,23 @@ files = [
     {file = "pycparser-2.22-py3-none-any.whl", hash = "sha256:c3702b6d3dd8c7abc1afa565d7e63d53a1d0bd86cdc24edd75470f4de499cfcc"},
     {file = "pycparser-2.22.tar.gz", hash = "sha256:491c8be9c040f5390f5bf44a5b07752bd07f56edf992381b05c701439eec10f6"},
 ]
+
+[[package]]
+name = "pyeclat"
+version = "1.0.2"
+description = "A package for association analysis using the ECLAT method."
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "pyECLAT-1.0.2-py3-none-any.whl", hash = "sha256:8052cd762269f11dbad85e27e8dfed28668824b30fb54a2549138c0f642c43ab"},
+    {file = "pyECLAT-1.0.2.linux-x86_64.tar.gz", hash = "sha256:8137cb7b56de716a13c5e08b10c12aaaa1cce58c7fe965ad7d5194e8fa6fcf44"},
+]
+
+[package.dependencies]
+numpy = ">=1.17.4"
+pandas = ">=0.25.3"
+tqdm = ">=4.41.1"
 
 [[package]]
 name = "pygments"
@@ -2974,6 +3006,28 @@ files = [
 ]
 
 [[package]]
+name = "tqdm"
+version = "4.67.1"
+description = "Fast, Extensible Progress Meter"
+optional = false
+python-versions = ">=3.7"
+groups = ["main"]
+files = [
+    {file = "tqdm-4.67.1-py3-none-any.whl", hash = "sha256:26445eca388f82e72884e0d580d5464cd801a3ea01e63e5601bdff9ba6a48de2"},
+    {file = "tqdm-4.67.1.tar.gz", hash = "sha256:f8aef9c52c08c13a65f30ea34f4e5aac3fd1a34959879d7e59e63027286627f2"},
+]
+
+[package.dependencies]
+colorama = {version = "*", markers = "platform_system == \"Windows\""}
+
+[package.extras]
+dev = ["nbval", "pytest (>=6)", "pytest-asyncio (>=0.24)", "pytest-cov", "pytest-timeout"]
+discord = ["requests"]
+notebook = ["ipywidgets (>=6)"]
+slack = ["slack-sdk"]
+telegram = ["requests"]
+
+[[package]]
 name = "traitlets"
 version = "5.14.3"
 description = "Traitlets Python configuration system"
@@ -3114,4 +3168,4 @@ test = ["websockets"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.11"
-content-hash = "d5f9b5dd4473f1ca473339729e0e00dfe9bed826385b879c7c9424183f516ec8"
+content-hash = "3dbaf3412013c12bf8cbec737a6aeb5a009c5495bfabfdcfa10273d54517fa35"
