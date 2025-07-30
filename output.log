@@ -1,0 +1,62 @@
+Cargando dataset...
+Ejecutando benchmark...
+Process MemTimer-10:
+Traceback (most recent call last):
+  File "/home/joessar/Projects/benchmark-frequent-itemsets/./scripts/apriori.py", line 68, in <module>
+    data, output = run_benchmark(lambda: run_apriori_multiprocess(workers=8), label="Apriori v1 Multiprocessing")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/joessar/Projects/benchmark-frequent-itemsets/scripts/benchmark.py", line 42, in run_benchmark
+    mem_usage = memory_usage((func, func_args, func_kwargs), interval=0.1, timeout=None, retval=True)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/joessar/anaconda3/envs/datamining-itemset/lib/python3.11/site-packages/memory_profiler.py", line 379, in memory_usage
+    returned = f(*args, **kw)
+               ^^^^^^^^^^^^^^
+  File "/home/joessar/Projects/benchmark-frequent-itemsets/./scripts/apriori.py", line 68, in <lambda>
+    data, output = run_benchmark(lambda: run_apriori_multiprocess(workers=8), label="Apriori v1 Multiprocessing")
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/joessar/Projects/benchmark-frequent-itemsets/./scripts/apriori.py", line 45, in run_apriori_multiprocess
+    p.join()
+  File "/home/joessar/anaconda3/envs/datamining-itemset/lib/python3.11/multiprocessing/process.py", line 149, in join
+    res = self._popen.wait(timeout)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/joessar/anaconda3/envs/datamining-itemset/lib/python3.11/multiprocessing/popen_fork.py", line 43, in wait
+    return self.poll(os.WNOHANG if timeout == 0.0 else 0)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/joessar/anaconda3/envs/datamining-itemset/lib/python3.11/multiprocessing/popen_fork.py", line 27, in poll
+    pid, sts = os.waitpid(self.pid, flag)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/home/joessar/anaconda3/envs/datamining-itemset/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/home/joessar/anaconda3/envs/datamining-itemset/lib/python3.11/site-packages/memory_profiler.py", line 262, in run
+    stop = self.pipe.poll(self.interval)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/joessar/anaconda3/envs/datamining-itemset/lib/python3.11/multiprocessing/connection.py", line 257, in poll
+    return self._poll(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/joessar/anaconda3/envs/datamining-itemset/lib/python3.11/multiprocessing/connection.py", line 440, in _poll
+    r = wait([self], timeout)
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/joessar/anaconda3/envs/datamining-itemset/lib/python3.11/multiprocessing/connection.py", line 948, in wait
+    ready = selector.select(timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/joessar/anaconda3/envs/datamining-itemset/lib/python3.11/selectors.py", line 415, in select
+    fd_event_list = self._selector.poll(timeout)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+Process Process-13:
+Traceback (most recent call last):
+  File "/home/joessar/anaconda3/envs/datamining-itemset/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/home/joessar/anaconda3/envs/datamining-itemset/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/joessar/Projects/benchmark-frequent-itemsets/./scripts/apriori.py", line 19, in run_apriori_chunk
+    result = apriori(chunk, min_support=1e-6, use_colnames=True) # o usar 1e-6
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/joessar/anaconda3/envs/datamining-itemset/lib/python3.11/site-packages/mlxtend/frequent_patterns/apriori.py", line 292, in apriori
+    combin = np.fromiter(combin, dtype=int)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/joessar/anaconda3/envs/datamining-itemset/lib/python3.11/site-packages/mlxtend/frequent_patterns/apriori.py", line 52, in generate_new_combinations
+    yield item
+KeyboardInterrupt
