@@ -1,4 +1,6 @@
 import argparse
+import copy
+
 import pandas as pd
 import importlib
 import os
@@ -39,23 +41,26 @@ def load_dataset(path=os.path.join(os.path.dirname(__file__), "./data/boolean_ba
     df.set_index('InvoiceNo', inplace=True)
     print(f"Dataframe cargado. Tamaño: {df.shape}")
 
+    is_data_sample = False
     x, y = df.shape
 
     if max_transactions:
+        is_data_sample = True
         x = max_transactions
 
     if max_items:
+        is_data_sample = True
         y = max_items
 
     df = df.iloc[0:x, 0:y]
 
     print(f"Ejecutando dataframe de tamaño: {df.shape}")
 
-    return df
+    return df, is_data_sample
 
 def read_args():
     parser = argparse.ArgumentParser(description="Benchmark de algoritmos de itemsets frecuentes")
-    parser.add_argument("--algorithm", choices=["eclat", "apriori", "fp_growth"], required=True)
+    parser.add_argument("--algorithm", choices=("eclat", "apriori", "fp_growth", "eclat_v2"), required=True)
     parser.add_argument("--min_support", type=float, required=True)
     parser.add_argument("--max_transactions", type=int)
     parser.add_argument("--max_items", type=int)
@@ -70,7 +75,7 @@ def main():
         if 'preprocess' in args:
             preprocessing()
 
-        transactions_df = load_dataset(args.dataset, args.max_transactions, args.max_items)
+        transactions_df, is_data_sample = load_dataset(args.dataset, args.max_transactions, args.max_items)
 
         algo_module = importlib.import_module(f"scripts.{args.algorithm}")
         algo_func = getattr(algo_module, "run")
@@ -80,15 +85,11 @@ def main():
         max_transactions = args.max_transactions if args.max_transactions else transactions_df.shape[0]
         max_items = args.max_items if args.max_items else transactions_df.shape[1]
 
-        is_data_sample = False
-        if max_transactions != transactions_df.shape[0] or max_items != transactions_df.shape[1]:
-            is_data_sample = True
-
         max_itemset_len = 4
         itemset_lengths = [len(output[output['itemsets'].apply(lambda x: len(x) == i)]) for i in range(1,max_itemset_len+1)]
 
         Path("results").mkdir(exist_ok=True)
-        with open("results/benchmark.csv", "a") as f:
+        with open("results/benchmark_i5-9400F.csv", "a") as f:
             f.write(f"{stats['Total_RAM_GB']},{stats['Hostname']},{stats['OS']},{stats['CPU']},"
                     f"{stats['Logical_CPUs']},{stats['Physical_CPUs']},"
                     f"{args.algorithm},{args.min_support},{is_data_sample},{max_transactions},{max_items},"
