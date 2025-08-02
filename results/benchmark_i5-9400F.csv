@@ -35,3 +35,5 @@ Total_RAM_GB,Hostname,OS,CPU,Logical_CPUs,Physical_CPUs,Algorithm,Min_Support,Is
 16.7,debian,Linux,,6,6,fp_growth,0.015,True,19773,200,38,22,14,2,0,2.5388,2.04,0.03,3521460,401.52,71476403
 16.7,debian,Linux,,6,6,apriori,0.015,True,19773,200,38,22,14,2,0,0.9077,0.08,0.05,3521460,457.32,14176951
 16.7,debian,Linux,,6,6,eclat,0.015,True,19773,200,38,22,14,2,0,0.88,0.07,0.04,3521460,341.82,1859154
+16.63,lucianopulido-desktop,Linux,x86_64,8,4,eclat,0.01,False,19773,3912,2007,829,894,258,25,7.7002,7.65,0.04,328420,287.12,37007569
+16.63,lucianopulido-desktop,Linux,x86_64,8,4,fp_growth,0.01,False,19773,3912,2007,829,894,258,25,475.8496,475.25,0.47,1655340,1543.17,1392996604
