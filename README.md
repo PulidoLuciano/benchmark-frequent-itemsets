@@ -40,5 +40,7 @@ Ejecutando benchmark...
 
 Los resultados encontrados luego de las ejecuciones son analizados en la notebook llamada `results.ipynb` presente en la carpeta raíz del proyecto.
 
+Las dependencias fueron gestionadas con poetry, por lo que con un `poetry install` debería ser suficiente para poder correr el código.
+
 
 
